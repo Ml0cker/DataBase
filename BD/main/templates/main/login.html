@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if login == ' ' %}
+<form role="form"  method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Войти </button>
+</form>
+{% else %}
+    <a href="{% url 'userPage' %}">Профиль</a></br>
+    {% block user %}
+        Вы уже вошли</br>
+    {% endblock user %}
+    <a href="{% url 'loginPage' %}?action=logout">Выйти</a>
+{% endif %}
+{% endblock %}

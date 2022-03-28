@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<form action="{% url 'registrationPage' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Подтвердить </button>
+    </form>
+
+{% endblock %}
+
+
+</body>
+</html>

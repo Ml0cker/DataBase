@@ -1,0 +1,21 @@
+{% extends 'main/login.html' %}
+{% block user %}
+{% if messages %}
+Сообщения </br>
+{% for message in messages %}
+{% if photos %}
+    {% for photo in photos %}
+        {% if photo.messageID.messageID == message.messageID %}
+            <img src="{{ photo.messagePhoto.url}}" alt="connect" style="max-height:100px"></br>
+        {% endif %}
+{% endfor %}
+{% endif %}
+<b>{{ message.userID }}: </b>{{ message.messageText }}   <div text-align: right><i text-align: right>{{ message.messageDateAndTime }} </i></div></br>
+{% endfor%}
+{% endif %}
+<form role="form"  method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> отправить </button>
+</form>
+{% endblock %}

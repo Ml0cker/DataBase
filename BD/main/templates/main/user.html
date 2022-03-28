@@ -1,0 +1,44 @@
+{% extends 'main/login.html' %}
+{% block user %}
+<form role="form"  method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"> Сохранить </button>
+</form>
+
+
+{% if friends %}
+Друзья </br>
+</br>
+
+
+{% for friend in friends %}
+<a href="">{{ friend.friendName }}</a></br>
+</br>
+{% endfor%}
+{% endif %}
+
+
+{% if photos %}
+Фото </br>
+</br>
+
+{% for photo in photos %}
+ <img src="{{ photo.photo.url}}" alt="connect" style="max-height:300px">
+</br>
+</br>
+
+{% endfor%}
+{% endif %}
+{% if dialogs %}
+Диалоги </br>
+</br>
+
+{% for dialog in dialogs %}
+
+<a href="{% url 'dialogPage' dialog.dialogID.dialogID %}">{{ dialog.dialogID.dialogName }}</a></br></br>
+
+{% endfor%}
+
+{% endif %}
+{% endblock %}
